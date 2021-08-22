@@ -9,6 +9,7 @@ router.get("/", function (req, res) {
 
 router.post("/api/register", User.register);
 router.post("/api/login", User.login);
+router.post("/api/createdetails", User.createDetails);
 router.get("/api/welcome", auth, User.welcome);
 
 module.exports = router;

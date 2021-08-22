@@ -65,6 +65,30 @@ exports.login = async (req, res, next) => {
   }
 };
 
+exports.createDetails = async (req, res) => {
+  try {
+    const { userId, address } = req.body;
+    const dataToSave = {
+      userId,
+      address,
+    };
+    let createDetail = await UserService.createDetail(dataToSave);
+    if (createDetail) {
+      return res.status(200).send(createDetail);
+    }
+  } catch (error) {
+    //  handle errors here
+    let errname = error.name;
+    let errmsg = error.message;
+    let customerror = "Error: User Controller -> createDetails";
+    const dataToSave = { errname, errmsg, customerror };
+    const errors = await ErrorLog.createErrorlog(dataToSave);
+    return res.status(200).send({
+      errors,
+    });
+  }
+};
+
 exports.welcome = async (req, res, next) => {
   res.status(200).send("Welcome 🙌 ");
 };
