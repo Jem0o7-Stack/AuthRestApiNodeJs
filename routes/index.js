@@ -12,6 +12,11 @@ router.get("/", function (req, res) {
 router.post("/api/register", User.register);
 router.post("/api/login", User.login);
 router.post("/api/createdetails", User.createDetails);
-router.post("/api/welcome", auth, authorize(Role.Admin), User.welcome);
+router.post(
+  "/api/welcome",
+  auth,
+  authorize([Role.Admin, Role.User]),
+  User.welcome
+);
 
 module.exports = router;

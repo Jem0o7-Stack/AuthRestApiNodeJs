@@ -6,7 +6,7 @@ function authorize(roles = []) {
   if (typeof roles === "string") {
     roles = [roles];
   }
-
+  //console.log(roles);
   return [
     // authorize based on user role
     (req, res, next) => {
